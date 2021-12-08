@@ -10,26 +10,22 @@ export class CarsController {
   constructor(private carsService: CarsService) {}
 
   @Get()
-  getCars(@Query() filterDto: GetCarsFilterDto): Car[] {
-    if (Object.keys(filterDto).length) {
-      return this.carsService.getCarsWithFilters(filterDto)
-    } else {
-      return this.carsService.getAllCars()
-    }
+  getCars(@Query() filterDto: GetCarsFilterDto): Promise<Car[]> {
+    return this.carsService.getCars(filterDto)
   }
 
   @Get('/:id')
-  getCarById(@Param('id') id: string): Car {
+  getCarById(@Param('id') id: string): Promise<Car> {
     return this.carsService.getCarById(id)
   }
 
   @Post()
-  createCar(@Body() createCarDto: CreateCarDto): Car {
-    return this.carsService.createCar(createCarDto)
+  create(@Body() createCarDto: CreateCarDto): Promise<Car> {
+    return this.carsService.create(createCarDto)
   }
 
   @Delete('/:id')
-  delete(@Param('id') id: string): void {
+  delete(@Param('id') id: string): Promise<void> {
     return this.carsService.delete(id)
   }
 
@@ -37,7 +33,7 @@ export class CarsController {
   update(
     @Param('id') id: string,
     @Body() updateCarInfo: UpdateCarInfosDto
-  ): Car {
+  ): Promise<Car> {
     return this.carsService.update(id, updateCarInfo)
   }
 }
