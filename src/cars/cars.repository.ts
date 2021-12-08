@@ -1,4 +1,4 @@
-import { NotFoundException } from "@nestjs/common";
+import { NotFoundException, Logger, InternalServerErrorException } from '@nestjs/common';
 import { EntityRepository, Repository } from "typeorm";
 import { Car } from './car.entity';
 import { CreateCarDto } from "./create.car.dto";
@@ -7,6 +7,7 @@ import { GetCarsFilterDto } from './get.cars.filter.dto';
 
 @EntityRepository(Car)
 export class CarsRepository extends Repository<Car> {
+  private logger = new Logger('CarsRepository')
 
   async getCars(filterDto: GetCarsFilterDto): Promise<Car[]> {
     const { brand, color, licensePlate } = filterDto
@@ -25,9 +26,14 @@ export class CarsRepository extends Repository<Car> {
       query.andWhere('LOWER(car.licensePlate) LIKE LOWER(:licensePlate)', { licensePlate: `%${licensePlate}%` })
     }
 
-    const cars = await query.getMany()
+    try {
+      const cars = await query.getMany()
+      return cars
+    } catch (error) {
+      this.logger.error(`Failed to get cars using filters ${JSON.stringify(filterDto)}`, error.stack)
+      throw new InternalServerErrorException()
+    }
 
-    return cars
   }
 
   async getCarById(id: string): Promise<Car> {
