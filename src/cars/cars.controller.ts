@@ -1,9 +1,9 @@
+import { CarsService } from '@/cars/cars.service';
+import { Car } from '@/cars/car.model';
+import { CreateCarDto } from '@/cars/create.car.dto';
+import { GetCarsFilterDto } from '@/cars/get.cars.filter.dto';
+import { UpdateCarInfosDto } from '@/cars/update.car.info.dto';
 import { Body, Controller, Delete, Get, Param, Patch, Post, Query, Logger } from '@nestjs/common';
-import { CarsService } from './cars.service';
-import { Car } from './car.model';
-import { CreateCarDto } from './create.car.dto';
-import { GetCarsFilterDto } from './get.cars.filter.dto';
-import { UpdateCarInfosDto } from './update.car.info.dto';
 
 @Controller('cars')
 export class CarsController {
