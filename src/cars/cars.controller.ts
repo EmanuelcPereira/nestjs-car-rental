@@ -3,7 +3,7 @@ import { Car } from '@/cars/car.model';
 import { CreateCarDto } from '@/cars/create.car.dto';
 import { GetCarsFilterDto } from '@/cars/get.cars.filter.dto';
 import { UpdateCarInfosDto } from '@/cars/update.car.info.dto';
-import { Body, Controller, Delete, Get, Param, Patch, Post, Query, Logger } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Patch, Post, Query, Logger, Put } from '@nestjs/common';
 
 @Controller('cars')
 export class CarsController {
@@ -11,7 +11,7 @@ export class CarsController {
   constructor(private carsService: CarsService) {}
 
   @Get()
-  getCars(@Query() filterDto: GetCarsFilterDto): Promise<Car[]> {
+  getCars(@Query() filterDto?: GetCarsFilterDto): Promise<Car[]> {
     this.logger.verbose(`Applied filters ${JSON.stringify(filterDto)}`)
     return this.carsService.getCars(filterDto)
   }
@@ -32,6 +32,12 @@ export class CarsController {
   delete(@Param('id') id: string): Promise<void> {
     this.logger.verbose(`Pass id = ${id}`)
     return this.carsService.delete(id)
+  }
+
+  @Put('/:id')
+  restore(@Param('id') id: string): Promise<void> {
+    this.logger.verbose(`Pass id = ${id}`)
+    return this.carsService.restore(id)
   }
 
   @Patch('/:id/characteristics')

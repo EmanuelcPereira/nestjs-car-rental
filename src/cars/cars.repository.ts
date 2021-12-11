@@ -9,10 +9,11 @@ import { NotFoundException, Logger, InternalServerErrorException } from '@nestjs
 export class CarsRepository extends Repository<Car> {
   private logger = new Logger('CarsRepository')
 
-  async getCars(filterDto: GetCarsFilterDto): Promise<Car[]> {
+  async getCars(filterDto?: GetCarsFilterDto): Promise<Car[]> {
     const { brand, color, licensePlate } = filterDto
 
     const query = this.createQueryBuilder('car')
+    .where('car.isDeleted = :isDeleted', { isDeleted: false })
 
     if (brand) {
       query.andWhere('LOWER(car.brand) LIKE LOWER(:brand)', { brand: `%${brand}%` })
@@ -73,10 +74,28 @@ export class CarsRepository extends Repository<Car> {
   }
 
   async deleteCar(id: string): Promise<void> {
-    const result = await this.delete(id)
+    const car = await this.createQueryBuilder('car')
+    .update()
+    .set({ isDeleted: true })
+    .where('id = :id')
+    .setParameters({ id })
+    .execute()
 
-    if (result.affected === 0) {
-      throw new NotFoundException(`Car with Id ${id} not found`)
+    if (car.affected === 0 ){
+      throw new NotFoundException(`Car with id ${id} not found`)
+    }
+  }
+
+  async restoreCar(id: string): Promise<void> {
+    const car = await this.createQueryBuilder('car')
+    .update()
+    .set({ isDeleted: false })
+    .where('id = :id')
+    .setParameters({ id })
+    .execute()
+
+    if (car.affected === 0 ){
+      throw new NotFoundException(`Car with id ${id} not found`)
     }
   }
 }

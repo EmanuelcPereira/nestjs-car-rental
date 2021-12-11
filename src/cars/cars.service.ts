@@ -13,7 +13,7 @@ export class CarsService {
     private carsRepository: CarsRepository
   ) { }
 
-  getCars(filterDto: GetCarsFilterDto): Promise<Car[]> {
+  getCars(filterDto?: GetCarsFilterDto): Promise<Car[]> {
     return this.carsRepository.getCars(filterDto)
   }
 
@@ -27,6 +27,10 @@ export class CarsService {
 
   delete(id: string): Promise<void> {
     return this.carsRepository.deleteCar(id)
+  }
+
+  restore(id: string): Promise<void> {
+    return this.carsRepository.restoreCar(id)
   }
 
   update(id: string, updateCarInfo: UpdateCarInfosDto): Promise<Car> {
