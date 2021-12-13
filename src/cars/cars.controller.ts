@@ -10,6 +10,12 @@ export class CarsController {
   private logger = new Logger('CarsController')
   constructor(private carsService: CarsService) {}
 
+  @Post()
+  create(@Body() createCarDto: CreateCarDto): Promise<Car> {
+    this.logger.verbose(`Registering a new car using ${createCarDto}`)
+    return this.carsService.create(createCarDto)
+  }
+
   @Get()
   getCars(@Query() filterDto?: GetCarsFilterDto): Promise<Car[]> {
     this.logger.verbose(`Applied filters ${JSON.stringify(filterDto)}`)
@@ -20,12 +26,6 @@ export class CarsController {
   getCarById(@Param('id') id: string): Promise<Car> {
     this.logger.verbose(`Pass id = ${id}`)
     return this.carsService.getCarById(id)
-  }
-
-  @Post()
-  create(@Body() createCarDto: CreateCarDto): Promise<Car> {
-    this.logger.verbose(`Registering a new car using ${createCarDto}`)
-    return this.carsService.create(createCarDto)
   }
 
   @Delete('/:id')

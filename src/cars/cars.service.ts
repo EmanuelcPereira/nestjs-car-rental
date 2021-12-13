@@ -13,6 +13,10 @@ export class CarsService {
     private carsRepository: CarsRepository
   ) { }
 
+  create(createCarDto: CreateCarDto): Promise<Car> {
+    return this.carsRepository.createCar(createCarDto)
+  }
+  
   getCars(filterDto?: GetCarsFilterDto): Promise<Car[]> {
     return this.carsRepository.getCars(filterDto)
   }
@@ -21,9 +25,6 @@ export class CarsService {
     return this.carsRepository.getCarById(id)
   }
 
-  create(createCarDto: CreateCarDto): Promise<Car> {
-    return this.carsRepository.createCar(createCarDto)
-  }
 
   delete(id: string): Promise<void> {
     return this.carsRepository.deleteCar(id)
