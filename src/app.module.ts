@@ -4,12 +4,15 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { UsageModule } from './usage/usage.module';
+import { DriversModule } from './drivers/drivers.module';
 @Module({
   imports: [
     ConfigModule.forRoot({
       validationSchema: configValidationSchema,
     }),
     CarsModule,
+    DriversModule,
+    UsageModule,
     TypeOrmModule.forRootAsync({
       imports: [ConfigModule],
       inject: [ConfigService],
@@ -23,8 +26,7 @@ import { UsageModule } from './usage/usage.module';
         autoLoadEntities: true,
         synchronize: true,
       })
-    }),
-    UsageModule
+    })
   ],
   controllers: [],
   providers: [],

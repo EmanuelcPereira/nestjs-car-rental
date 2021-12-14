@@ -3,17 +3,17 @@ import { CreateCarDto } from "@/cars/create.car.dto";
 import { UpdateCarInfosDto } from "@/cars/update.car.info.dto";
 import { GetCarsFilterDto } from '@/cars/get.cars.filter.dto';
 import { EntityRepository, Repository } from "typeorm";
-import { NotFoundException, Logger, InternalServerErrorException } from '@nestjs/common';
+import { NotFoundException, Logger, InternalServerErrorException, BadRequestException } from '@nestjs/common';
 
 @EntityRepository(Car)
 export class CarsRepository extends Repository<Car> {
   private logger = new Logger('CarsRepository')
 
-  async getCars(filterDto?: GetCarsFilterDto): Promise<Car[]> {
+  async getCars (filterDto?: GetCarsFilterDto): Promise<Car[]> {
     const { brand, color, licensePlate } = filterDto
 
     const query = this.createQueryBuilder('car')
-    .where('car.isDeleted = :isDeleted', { isDeleted: false })
+      .where('car.isDeleted = :isDeleted', { isDeleted: false })
 
     if (brand) {
       query.andWhere('LOWER(car.brand) LIKE LOWER(:brand)', { brand: `%${brand}%` })
@@ -37,7 +37,7 @@ export class CarsRepository extends Repository<Car> {
 
   }
 
-  async getCarById(id: string): Promise<Car> {
+  async getCarById (id: string): Promise<Car> {
     const car = await this.findOne(id)
 
     if (!car) {
@@ -47,7 +47,7 @@ export class CarsRepository extends Repository<Car> {
     return car
   }
 
-  async createCar(createCarDto: CreateCarDto): Promise<Car> {
+  async createCar (createCarDto: CreateCarDto): Promise<Car> {
     const { brand, color, licensePlate } = createCarDto
     const car = this.create({
       brand,
@@ -61,7 +61,7 @@ export class CarsRepository extends Repository<Car> {
     return car
   }
 
-  async updateCar(id: string, updateCarInfo: UpdateCarInfosDto): Promise<Car> {
+  async updateCar (id: string, updateCarInfo: UpdateCarInfosDto): Promise<Car> {
     const { brand, color } = updateCarInfo
     const car = await this.getCarById(id)
     car.brand = brand
@@ -73,28 +73,39 @@ export class CarsRepository extends Repository<Car> {
 
   }
 
-  async deleteCar(id: string): Promise<void> {
-    const car = await this.createQueryBuilder('car')
-    .update()
-    .set({ isDeleted: true })
-    .where('id = :id')
-    .setParameters({ id })
-    .execute()
+  async deleteCar (id: string): Promise<void> {
+    const car = await this.getCarById(id)
 
-    if (car.affected === 0 ){
+    if (car.isDeleted === true) {
+      throw new BadRequestException(`Car with id ${id} is already deleted`)
+    }
+
+    const deleteCar = await this.createQueryBuilder('car')
+      .update()
+      .set({ isDeleted: true })
+      .where('id = :id')
+      .setParameters({ id })
+      .execute()
+
+    if (deleteCar.affected) {
       throw new NotFoundException(`Car with id ${id} not found`)
     }
   }
 
-  async restoreCar(id: string): Promise<void> {
-    const car = await this.createQueryBuilder('car')
-    .update()
-    .set({ isDeleted: false })
-    .where('id = :id')
-    .setParameters({ id })
-    .execute()
+  async restoreCar (id: string): Promise<void> {
+    const car = await this.getCarById(id)
 
-    if (car.affected === 0 ){
+    if (car.isDeleted !== true) {
+      throw new BadRequestException(`Car with id ${id} is already restored`)
+    }
+    const restoreCar = await this.createQueryBuilder('car')
+      .update()
+      .set({ isDeleted: false })
+      .where('id = :id')
+      .setParameters({ id })
+      .execute()
+
+    if (restoreCar.affected === 0) {
       throw new NotFoundException(`Car with id ${id} not found`)
     }
   }
