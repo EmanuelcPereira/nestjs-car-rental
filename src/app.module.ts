@@ -3,6 +3,7 @@ import { CarsModule } from '@/cars/cars.module';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { UsageModule } from './usage/usage.module';
 @Module({
   imports: [
     ConfigModule.forRoot({
@@ -22,7 +23,8 @@ import { TypeOrmModule } from '@nestjs/typeorm';
         autoLoadEntities: true,
         synchronize: true,
       })
-    })
+    }),
+    UsageModule
   ],
   controllers: [],
   providers: [],
