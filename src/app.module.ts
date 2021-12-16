@@ -1,10 +1,10 @@
 import { configValidationSchema } from '@/config.schema';
-import { CarsModule } from '@/cars/cars.module';
+import { CarsModule } from '@/modules/cars/cars.module';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { UsageModule } from './usage/usage.module';
-import { DriversModule } from './drivers/drivers.module';
+import { UsageModule } from './modules/usage/usage.module';
+import { DriversModule } from './modules/drivers/drivers.module';
 @Module({
   imports: [
     ConfigModule.forRoot({
