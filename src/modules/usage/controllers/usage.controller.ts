@@ -1,6 +1,6 @@
-import { UsageService } from '@/usage/services/usage.service';
-import { CreateUsageDto } from '@/usage/dto/create-usage.dto';
-import { UpdateUsageDto } from '@/usage/dto/update-usage.dto';
+import { UsageService } from '@/modules/usage/services/usage.service';
+import { CreateUsageDto } from '@/modules/usage/dto/create-usage.dto';
+import { UpdateUsageDto } from '@/modules/usage/dto/update-usage.dto';
 import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 

@@ -1,6 +1,6 @@
-import { CreateUsageDto } from "@/usage/dto/create-usage.dto";
-import { UpdateUsageDto } from '@/usage/dto/update-usage.dto';
-import { Usage } from "@/usage/entities/usage.entity";
+import { CreateUsageDto } from "@/modules/usage/dto/create-usage.dto";
+import { UpdateUsageDto } from '@/modules/usage/dto/update-usage.dto';
+import { Usage } from "@/modules/usage/entities/usage.entity";
 import { BadRequestException } from "@nestjs/common";
 import { EntityRepository, Repository } from "typeorm";
 

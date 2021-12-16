@@ -1,6 +1,6 @@
-import { UsageService } from '@/usage/services/usage.service';
-import { UsageController } from '@/usage/controllers/usage.controller';
-import { UsageRepository } from '@/usage/repositories/usage.repository';
+import { UsageService } from '@/modules/usage/services/usage.service';
+import { UsageController } from '@/modules/usage/controllers/usage.controller';
+import { UsageRepository } from '@/modules/usage/repositories/usage.repository';
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 

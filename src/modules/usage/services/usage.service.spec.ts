@@ -1,5 +1,5 @@
-import { UsageService } from '@/usage/services/usage.service';
-import { UsageRepository } from '@/usage/repositories/usage.repository';
+import { UsageService } from '@/modules/usage/services/usage.service';
+import { UsageRepository } from '@/modules/usage/repositories/usage.repository';
 import { Test, TestingModule } from '@nestjs/testing';
 import faker from 'faker';
 

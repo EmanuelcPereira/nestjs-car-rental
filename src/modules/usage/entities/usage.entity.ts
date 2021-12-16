@@ -1,5 +1,5 @@
-import { Car } from '@/cars/Entities/car.entity';
-import { Driver } from '@/drivers/entities/driver.entity';
+import { Car } from '@/modules/cars/Entities/car.entity';
+import { Driver } from '@/modules/drivers/entities/driver.entity';
 import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity()

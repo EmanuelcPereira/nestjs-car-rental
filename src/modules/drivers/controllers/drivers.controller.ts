@@ -1,6 +1,6 @@
-import { DriversService } from '@/drivers/services/drivers.service';
-import { CreateDriverDto } from '@/drivers/dto/create-driver.dto';
-import { UpdateDriverDto } from '@/drivers/dto/update-driver.dto';
+import { DriversService } from '@/modules/drivers/services/drivers.service';
+import { CreateDriverDto } from '@/modules/drivers/dto/create-driver.dto';
+import { UpdateDriverDto } from '@/modules/drivers/dto/update-driver.dto';
 import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 

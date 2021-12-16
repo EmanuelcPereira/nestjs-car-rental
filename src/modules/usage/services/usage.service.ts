@@ -1,7 +1,7 @@
-import { CreateUsageDto } from '@/usage/dto/create-usage.dto';
-import { UpdateUsageDto } from '@/usage/dto/update-usage.dto';
-import { Usage } from '@/usage/entities/usage.entity';
-import { UsageRepository } from '@/usage/repositories/usage.repository';
+import { CreateUsageDto } from '@/modules/usage/dto/create-usage.dto';
+import { UpdateUsageDto } from '@/modules/usage/dto/update-usage.dto';
+import { Usage } from '@/modules/usage/entities/usage.entity';
+import { UsageRepository } from '@/modules/usage/repositories/usage.repository';
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 

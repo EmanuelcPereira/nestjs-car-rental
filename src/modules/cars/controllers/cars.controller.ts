@@ -1,7 +1,7 @@
-import { CarsService } from '@/cars/services/cars.service';
-import { CreateCarDto } from '@/cars/dtos/create.car.dto';
-import { GetCarsFilterDto } from '@/cars/dtos/get.cars.filter.dto';
-import { UpdateCarInfosDto } from '@/cars/dtos/update.car.info.dto';
+import { CarsService } from '@/modules/cars/services/cars.service';
+import { CreateCarDto } from '@/modules/cars/dtos/create.car.dto';
+import { GetCarsFilterDto } from '@/modules/cars/dtos/get.cars.filter.dto';
+import { UpdateCarInfosDto } from '@/modules/cars/dtos/update.car.info.dto';
 import { Body, Controller, Delete, Get, Param, Patch, Post, Query, Logger, Put } from '@nestjs/common';
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { Car } from '../Entities/car.entity';

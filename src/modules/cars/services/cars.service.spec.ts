@@ -1,6 +1,6 @@
-import { CarsService } from '@/cars/services/cars.service';
-import { CarsRepository } from '@/cars/repositories/cars.repository';
-import { GetCarsFilterDto } from '@/cars/dtos/get.cars.filter.dto';
+import { CarsService } from '@/modules/cars/services/cars.service';
+import { CarsRepository } from '@/modules/cars/repositories/cars.repository';
+import { GetCarsFilterDto } from '@/modules/cars/dtos/get.cars.filter.dto';
 import { Test } from '@nestjs/testing';
 import faker from 'faker';
 

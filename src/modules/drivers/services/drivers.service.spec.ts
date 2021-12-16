@@ -1,8 +1,8 @@
 import { Test } from '@nestjs/testing';
-import { DriversService } from '@/drivers/services/drivers.service';
-import { DriversRepository } from '@/drivers/repositories/drivers.repository';
+import { DriversService } from '@/modules/drivers/services/drivers.service';
+import { DriversRepository } from '@/modules/drivers/repositories/drivers.repository';
 import faker from 'faker';
-import { UpdateDriverDto } from '@/drivers/dto/update-driver.dto';
+import { UpdateDriverDto } from '@/modules/drivers/dto/update-driver.dto';
 
 
 let driversService: DriversService;
