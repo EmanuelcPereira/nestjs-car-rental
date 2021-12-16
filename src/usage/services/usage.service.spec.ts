@@ -1,6 +1,6 @@
+import { UsageService } from '@/usage/services/usage.service';
+import { UsageRepository } from '@/usage/repositories/usage.repository';
 import { Test, TestingModule } from '@nestjs/testing';
-import { UsageService } from './usage.service';
-import { UsageRepository } from './usage.repository';
 import faker from 'faker';
 
 let usageService: UsageService;

@@ -1,9 +1,8 @@
-import { EntityRepository, Repository } from "typeorm";
-import { CreateUsageDto } from "./dto/create-usage.dto";
-import { Usage } from "./entities/usage.entity";
-import { FilterUsageDto } from './dto/filter.usage.dto';
+import { CreateUsageDto } from "@/usage/dto/create-usage.dto";
+import { UpdateUsageDto } from '@/usage/dto/update-usage.dto';
+import { Usage } from "@/usage/entities/usage.entity";
 import { BadRequestException } from "@nestjs/common";
-import { UpdateUsageDto } from './dto/update-usage.dto';
+import { EntityRepository, Repository } from "typeorm";
 
 @EntityRepository(Usage)
 export class UsageRepository extends Repository<Usage> {

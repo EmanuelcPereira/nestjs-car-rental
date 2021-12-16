@@ -1,6 +1,6 @@
-import { Column, Entity, JoinColumn, ManyToOne, OneToOne, PrimaryGeneratedColumn } from "typeorm";
-import { Driver } from '../../drivers/entities/driver.entity';
-import { Car } from '../../cars/car.entity';
+import { Car } from '@/cars/Entities/car.entity';
+import { Driver } from '@/drivers/entities/driver.entity';
+import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity()
 export class Usage {

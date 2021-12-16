@@ -1,9 +1,9 @@
+import { CreateUsageDto } from '@/usage/dto/create-usage.dto';
+import { UpdateUsageDto } from '@/usage/dto/update-usage.dto';
+import { Usage } from '@/usage/entities/usage.entity';
+import { UsageRepository } from '@/usage/repositories/usage.repository';
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { CreateUsageDto } from './dto/create-usage.dto';
-import { UpdateUsageDto } from './dto/update-usage.dto';
-import { Usage } from './entities/usage.entity';
-import { UsageRepository } from './usage.repository';
 
 @Injectable()
 export class UsageService {
