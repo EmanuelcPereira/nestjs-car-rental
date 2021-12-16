@@ -14,8 +14,8 @@ const mockCarsRepository = () => ({
   getCarById: jest.fn(),
   createCar: jest.fn(),
   updateCar: jest.fn(),
-  deleteCar: jest.fn(),
-  restoreCar: jest.fn()
+  inactivateCar: jest.fn(),
+  reactivateCar: jest.fn()
 })
 
 const mockCars = () => ([{
@@ -85,21 +85,21 @@ describe('CarsService', () => {
     })
   })
 
-  describe('delete', () => {
-    it('ensure carsService delete set isDeleted to true', async () => {
-      carsRepository.deleteCar.mockResolvedValue({ affected: 1 })
-      expect(carsRepository.deleteCar).not.toHaveBeenCalled()
-      await carsService.delete(id)
-      expect(carsRepository.deleteCar).toHaveBeenCalled()
+  describe('inactivate', () => {
+    it('ensure carsService inactivate set isDeleted to true', async () => {
+      carsRepository.inactivateCar.mockResolvedValue({ affected: 1 })
+      expect(carsRepository.inactivateCar).not.toHaveBeenCalled()
+      await carsService.inactivate(id)
+      expect(carsRepository.inactivateCar).toHaveBeenCalled()
     })
   })
 
   describe('restore', () => {
     it('ensure carsService restore set isDeleted to false', async () => {
-      carsRepository.restoreCar.mockResolvedValue({ affected: 1 })
-      expect(carsRepository.restoreCar).not.toHaveBeenCalled()
-      await carsService.restore(id)
-      expect(carsRepository.restoreCar).toHaveBeenCalled()
+      carsRepository.reactivateCar.mockResolvedValue({ affected: 1 })
+      expect(carsRepository.reactivateCar).not.toHaveBeenCalled()
+      await carsService.reactive(id)
+      expect(carsRepository.reactivateCar).toHaveBeenCalled()
     })
   })
 })

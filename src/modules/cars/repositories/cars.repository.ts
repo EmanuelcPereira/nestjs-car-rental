@@ -73,7 +73,7 @@ export class CarsRepository extends Repository<Car> {
 
   }
 
-  async deleteCar (id: string): Promise<void> {
+  async inactivateCar (id: string): Promise<void> {
     const car = await this.getCarById(id)
 
     if (car.isDeleted === true) {
@@ -89,7 +89,7 @@ export class CarsRepository extends Repository<Car> {
 
   }
 
-  async restoreCar (id: string): Promise<void> {
+  async reactivateCar (id: string): Promise<void> {
     const car = await this.getCarById(id)
 
     if (car.isDeleted !== true) {

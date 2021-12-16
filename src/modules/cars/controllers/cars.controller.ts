@@ -44,7 +44,7 @@ export class CarsController {
   @ApiResponse({ status: 404, description: 'Car not found' })
   delete (@Param('id') id: string): Promise<void> {
     this.logger.verbose(`Pass id = ${id}`)
-    return this.carsService.delete(id)
+    return this.carsService.inactivate(id)
   }
 
   @Put('/:id')
@@ -54,7 +54,7 @@ export class CarsController {
   @ApiResponse({ status: 404, description: 'Car not found' })
   restore (@Param('id') id: string): Promise<void> {
     this.logger.verbose(`Pass id = ${id}`)
-    return this.carsService.restore(id)
+    return this.carsService.reactive(id)
   }
 
   @Patch('/:id/characteristics')

@@ -27,12 +27,12 @@ export class CarsService {
   }
 
 
-  delete(id: string): Promise<void> {
-    return this.carsRepository.deleteCar(id)
+  inactivate(id: string): Promise<void> {
+    return this.carsRepository.inactivateCar(id)
   }
 
-  restore(id: string): Promise<void> {
-    return this.carsRepository.restoreCar(id)
+  reactive(id: string): Promise<void> {
+    return this.carsRepository.reactivateCar(id)
   }
 
   update(id: string, updateCarInfo: UpdateCarInfosDto): Promise<Car> {
