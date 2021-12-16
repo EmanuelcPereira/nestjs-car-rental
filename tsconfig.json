@@ -19,6 +19,6 @@
     "experimentalDecorators": true,
     "allowSyntheticDefaultImports": true,
   },
-  "include": ["src", "tests/modules/usage/services/usage.service.spec.ts", "tests/modules/drivers/services/drivers.service.spec.ts", "tests/modules/cars/services/cars.service.spec.ts"],
+  "include": ["src", "tests"],
   "exclude": []
 }
