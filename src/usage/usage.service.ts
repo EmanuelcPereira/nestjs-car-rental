@@ -1,26 +1,34 @@
 import { Injectable } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
 import { CreateUsageDto } from './dto/create-usage.dto';
 import { UpdateUsageDto } from './dto/update-usage.dto';
+import { Usage } from './entities/usage.entity';
+import { UsageRepository } from './usage.repository';
 
 @Injectable()
 export class UsageService {
-  create(createUsageDto: CreateUsageDto) {
-    return 'This action adds a new usage';
+  constructor (
+    @InjectRepository(UsageRepository)
+    private usageRepository: UsageRepository
+  ) { }
+
+  create (createUsageDto: CreateUsageDto): Promise<Usage> {
+    return this.usageRepository.createUsage(createUsageDto);
   }
 
-  findAll() {
-    return `This action returns all usage`;
+  getUsage (): Promise<Usage[]> {
+    return this.usageRepository.getUsage();
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} usage`;
+  getUsageById (id: string): Promise<Usage> {
+    return this.usageRepository.getUsageById(id);
   }
 
-  update(id: number, updateUsageDto: UpdateUsageDto) {
-    return `This action updates a #${id} usage`;
+  update (id: string, updateUsageDto: UpdateUsageDto): Promise<Usage> {
+    return this.usageRepository.updateUsage(id, updateUsageDto);
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} usage`;
+  delete (id: string): Promise<void> {
+    return this.usageRepository.deleteUsage(id);
   }
 }

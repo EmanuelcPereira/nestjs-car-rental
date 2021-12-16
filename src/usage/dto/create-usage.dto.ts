@@ -1,1 +1,5 @@
-export class CreateUsageDto {}
+export class CreateUsageDto {
+  driverId: string
+  carId: string
+  motivation: string
+}
