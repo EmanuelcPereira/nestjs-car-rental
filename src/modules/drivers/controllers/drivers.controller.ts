@@ -16,12 +16,12 @@ export class DriversController {
 
   @Get()
   getDrivers () {
-    return this.driversService.findAll();
+    return this.driversService.getDrivers();
   }
 
   @Get(':id')
   getDriverById (@Param('id') id: string) {
-    return this.driversService.findOne(id);
+    return this.driversService.getDriverById(id);
   }
 
   @Patch('/:id')
@@ -31,11 +31,11 @@ export class DriversController {
 
   @Delete(':id')
   delete (@Param('id') id: string) {
-    return this.driversService.delete(id);
+    return this.driversService.inactivate(id);
   }
 
   @Patch('/:id/status')
   restore (@Param('id') id: string) {
-    return this.driversService.restore(id);
+    return this.driversService.reactivate(id);
   }
 }

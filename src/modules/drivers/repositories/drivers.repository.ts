@@ -54,7 +54,7 @@ export class DriversRepository extends Repository<Driver> {
     return driver
   }
 
-  async deleteDriver (id: string): Promise<void> {
+  async inactivateDriver (id: string): Promise<void> {
     const driver = await this.getDriverById(id)
 
     driver.isDeleted = true
@@ -62,7 +62,7 @@ export class DriversRepository extends Repository<Driver> {
     await this.save(driver)
   }
 
-  async restoreDriver (id: string): Promise<void> {
+  async reactivateDriver (id: string): Promise<void> {
     const driver = await this.getDriverById(id)
 
     driver.isDeleted = false

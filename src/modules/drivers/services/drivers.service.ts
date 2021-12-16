@@ -15,11 +15,11 @@ export class DriversService {
     return this.driversRepository.createDriver(createDriverDto)
   }
 
-  findAll(name?: string) {
+  getDrivers(name?: string) {
     return this.driversRepository.getDrivers(name);
   }
 
-  findOne(id: string) {
+  getDriverById(id: string) {
     return this.driversRepository.getDriverById(id);
   }
 
@@ -27,11 +27,11 @@ export class DriversService {
     return this.driversRepository.updateDriver(id, updateDriverDto);
   }
 
-  delete(id: string) {
-    return this.driversRepository.deleteDriver(id);
+  inactivate(id: string) {
+    return this.driversRepository.inactivateDriver(id);
   }
 
-  restore(id: string) {
-    return this.driversRepository.restoreDriver(id);
+  reactivate(id: string) {
+    return this.driversRepository.reactivateDriver(id);
   }
 }

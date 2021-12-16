@@ -15,8 +15,8 @@ const mockDriversRepository = () => ({
   getDriverById: jest.fn(),
   createDriver: jest.fn(),
   updateDriver: jest.fn(),
-  deleteDriver: jest.fn(),
-  restoreDriver: jest.fn()
+  inactivateDriver: jest.fn(),
+  reactivateDriver: jest.fn()
 })
 
 const mockDriver = () => ({
@@ -67,7 +67,7 @@ describe('DriversService', () => {
       const drivers = mockDrivers()
       driversRepository.getDrivers.mockResolvedValue(drivers)
       const name = faker.name.findName()
-      const result = await driversService.findAll(name)
+      const result = await driversService.getDrivers(name)
       expect(result).toEqual(drivers)
     })
   })
@@ -76,7 +76,7 @@ describe('DriversService', () => {
     it('ensure driversService get driver by id from repository', async () => {
       const driver = mockDriver()
       driversRepository.getDriverById.mockResolvedValue(driver)
-      const result = await driversService.findOne(id)
+      const result = await driversService.getDriverById(id)
       expect(result).toEqual(driver)
     })
   })
@@ -84,19 +84,19 @@ describe('DriversService', () => {
   describe('delete', () => {
     it('ensure driverService delete set isDeleted to true', async () => {
       const driver = mockDriver()
-      driversRepository.deleteDriver.mockResolvedValue({ affected: 1 })
-      expect(driversRepository.deleteDriver).not.toHaveBeenCalled()
-      await driversService.delete(id)
-      expect(driversRepository.deleteDriver).toHaveBeenCalled()
+      driversRepository.inactivateDriver.mockResolvedValue({ affected: 1 })
+      expect(driversRepository.inactivateDriver).not.toHaveBeenCalled()
+      await driversService.inactivate(id)
+      expect(driversRepository.inactivateDriver).toHaveBeenCalled()
     })
   })
 
   describe('restore', () => {
     it('ensure driversService restore se isDeleted fo false', async () => {
-      driversRepository.restoreDriver.mockResolvedValue({ affected: 1 })
-      expect(driversRepository.restoreDriver).not.toHaveBeenCalled()
-      await driversService.restore(id)
-      expect(driversRepository.restoreDriver).toHaveBeenCalled()
+      driversRepository.reactivateDriver.mockResolvedValue({ affected: 1 })
+      expect(driversRepository.reactivateDriver).not.toHaveBeenCalled()
+      await driversService.reactivate(id)
+      expect(driversRepository.reactivateDriver).toHaveBeenCalled()
     })
   })
 
