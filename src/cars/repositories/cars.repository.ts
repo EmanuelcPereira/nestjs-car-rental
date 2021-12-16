@@ -1,7 +1,7 @@
-import { Car } from '@/cars/car.entity';
-import { CreateCarDto } from "@/cars/create.car.dto";
-import { UpdateCarInfosDto } from "@/cars/update.car.info.dto";
-import { GetCarsFilterDto } from '@/cars/get.cars.filter.dto';
+import { Car } from '@/cars/Entities/car.entity';
+import { CreateCarDto } from "@/cars/dtos/create.car.dto";
+import { UpdateCarInfosDto } from "@/cars/dtos/update.car.info.dto";
+import { GetCarsFilterDto } from '@/cars/dtos/get.cars.filter.dto';
 import { EntityRepository, Repository } from "typeorm";
 import { NotFoundException, Logger, InternalServerErrorException, BadRequestException } from '@nestjs/common';
 

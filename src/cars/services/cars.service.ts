@@ -1,8 +1,9 @@
-import { Car } from '@/cars/car.model';
-import { CreateCarDto } from '@/cars/create.car.dto';
-import { GetCarsFilterDto } from '@/cars/get.cars.filter.dto';
-import { UpdateCarInfosDto } from '@/cars/update.car.info.dto';
-import { CarsRepository } from '@/cars/cars.repository';
+
+import { CreateCarDto } from '@/cars/dtos/create.car.dto';
+import { GetCarsFilterDto } from '@/cars/dtos/get.cars.filter.dto';
+import { UpdateCarInfosDto } from '@/cars/dtos/update.car.info.dto';
+import { CarsRepository } from '@/cars/repositories/cars.repository';
+import { Car } from '@/cars/Entities/car.entity';
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 

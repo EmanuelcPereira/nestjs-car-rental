@@ -1,9 +1,8 @@
+import { CarsService } from '@/cars/services/cars.service';
+import { CarsRepository } from '@/cars/repositories/cars.repository';
+import { GetCarsFilterDto } from '@/cars/dtos/get.cars.filter.dto';
 import { Test } from '@nestjs/testing';
-import { CarsService } from './cars.service';
-import { CarsRepository } from './cars.repository';
 import faker from 'faker';
-import { GetCarsFilterDto } from './get.cars.filter.dto';
-import { UpdateCarInfosDto } from './update.car.info.dto';
 
 let carsService: CarsService
 let carsRepository
