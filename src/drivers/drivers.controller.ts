@@ -1,8 +1,10 @@
 import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { ApiTags } from '@nestjs/swagger';
 import { DriversService } from './drivers.service';
 import { CreateDriverDto } from './dto/create-driver.dto';
 import { UpdateDriverDto } from './dto/update-driver.dto';
 
+@ApiTags('drivers')
 @Controller('drivers')
 export class DriversController {
   constructor (private readonly driversService: DriversService) { }

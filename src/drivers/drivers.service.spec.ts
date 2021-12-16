@@ -82,7 +82,7 @@ describe('DriversService', () => {
   })
 
   describe('delete', () => {
-    it('ensure driverService delete sei isDeleted to true', async () => {
+    it('ensure driverService delete set isDeleted to true', async () => {
       const driver = mockDriver()
       driversRepository.deleteDriver.mockResolvedValue({ affected: 1 })
       expect(driversRepository.deleteDriver).not.toHaveBeenCalled()

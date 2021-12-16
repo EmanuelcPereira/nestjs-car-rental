@@ -103,16 +103,4 @@ describe('CarsService', () => {
       expect(carsRepository.restoreCar).toHaveBeenCalled()
     })
   })
-
-  describe('update', () => {
-    it('ensure carsService update car infos', async () => {
-      const car = mockCar()
-      carsRepository.updateCar.mockResolvedValue(car)
-      const updateCarInfo: UpdateCarInfosDto = {
-        brand: 'Toyota',
-        color: 'Branco'
-      }
-      const result = await carsService.update(car.id, updateCarInfo)
-    })
-  })
 })

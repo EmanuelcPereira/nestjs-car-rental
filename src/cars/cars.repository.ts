@@ -80,16 +80,13 @@ export class CarsRepository extends Repository<Car> {
       throw new BadRequestException(`Car with id ${id} is already deleted`)
     }
 
-    const deleteCar = await this.createQueryBuilder('car')
+    await this.createQueryBuilder('car')
       .update()
       .set({ isDeleted: true })
       .where('id = :id')
       .setParameters({ id })
       .execute()
 
-    if (deleteCar.affected) {
-      throw new NotFoundException(`Car with id ${id} not found`)
-    }
   }
 
   async restoreCar (id: string): Promise<void> {
@@ -98,15 +95,13 @@ export class CarsRepository extends Repository<Car> {
     if (car.isDeleted !== true) {
       throw new BadRequestException(`Car with id ${id} is already restored`)
     }
-    const restoreCar = await this.createQueryBuilder('car')
+    
+    await this.createQueryBuilder('car')
       .update()
       .set({ isDeleted: false })
       .where('id = :id')
       .setParameters({ id })
       .execute()
 
-    if (restoreCar.affected === 0) {
-      throw new NotFoundException(`Car with id ${id} not found`)
-    }
   }
 }
