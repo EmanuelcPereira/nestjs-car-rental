@@ -1,8 +1,8 @@
+import { CreateDriverDto } from '@/drivers/dto/create-driver.dto';
+import { UpdateDriverDto } from '@/drivers/dto/update-driver.dto';
+import { DriversRepository } from '@/drivers/repositories/drivers.repository';
 import { Injectable } from '@nestjs/common';
-import { CreateDriverDto } from './dto/create-driver.dto';
 import { InjectRepository } from '@nestjs/typeorm';
-import { UpdateDriverDto } from './dto/update-driver.dto';
-import { DriversRepository } from './drivers.repository';
 
 @Injectable()
 export class DriversService {

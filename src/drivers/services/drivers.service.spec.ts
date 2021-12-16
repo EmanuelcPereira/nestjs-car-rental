@@ -1,8 +1,8 @@
-import { Test, TestingModule } from '@nestjs/testing';
-import { DriversService } from './drivers.service';
-import { DriversRepository } from './drivers.repository';
+import { Test } from '@nestjs/testing';
+import { DriversService } from '@/drivers/services/drivers.service';
+import { DriversRepository } from '@/drivers/repositories/drivers.repository';
 import faker from 'faker';
-import { UpdateDriverDto } from './dto/update-driver.dto';
+import { UpdateDriverDto } from '@/drivers/dto/update-driver.dto';
 
 
 let driversService: DriversService;

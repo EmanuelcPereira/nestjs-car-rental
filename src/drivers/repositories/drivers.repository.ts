@@ -1,8 +1,8 @@
-import { EntityRepository, Repository } from 'typeorm';
-import { UpdateDriverDto } from './dto/update-driver.dto';
-import { Driver } from './entities/driver.entity';
+import { CreateDriverDto } from '@/drivers/dto/create-driver.dto';
+import { UpdateDriverDto } from '@/drivers/dto/update-driver.dto';
+import { Driver } from '@/drivers/entities/driver.entity';
 import { Logger, InternalServerErrorException, NotFoundException } from '@nestjs/common';
-import { CreateDriverDto } from './dto/create-driver.dto';
+import { EntityRepository, Repository } from 'typeorm';
 
 @EntityRepository(Driver)
 export class DriversRepository extends Repository<Driver> {
