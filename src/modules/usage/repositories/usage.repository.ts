@@ -7,17 +7,24 @@ import { EntityRepository, Repository } from "typeorm";
 @EntityRepository(Usage)
 export class UsageRepository extends Repository<Usage> {
 
-  async getUsage (): Promise<Usage[]> {
-    const usage = await this.find()
+  async getUsage(): Promise<Usage[]> {
+    return this.find({ relations: ['car', 'driver'] })
+
+  }
+
+  async getUsageById(id: string): Promise<Usage> {
+    const usage = await this.findOne(id, {
+      relations: ['car', 'driver']
+    })
+
+    if (!usage) {
+      throw new BadRequestException(`Usage with Id ${id} not found`)
+    }
 
     return usage
   }
 
-  async getUsageById (id: string): Promise<Usage> {
-    return this.findOne(id)
-  }
-
-  async createUsage (createUsage: CreateUsageDto): Promise<Usage> {
+  async createUsage(createUsage: CreateUsageDto): Promise<Usage> {
     const { driverId, carId, motivation } = createUsage
     const registeredUsage = await this.find({ finalUsage: null })
 
@@ -39,7 +46,7 @@ export class UsageRepository extends Repository<Usage> {
     return usage
   }
 
-  async updateUsage (id: string, updateUsage: UpdateUsageDto): Promise<Usage> {
+  async updateUsage(id: string, updateUsage: UpdateUsageDto): Promise<Usage> {
     const usage = await this.getUsageById(id)
 
     Object.assign(usage, updateUsage)
@@ -49,7 +56,7 @@ export class UsageRepository extends Repository<Usage> {
     return usage
   }
 
-  async deleteUsage (id: string): Promise<void> {
+  async deleteUsage(id: string): Promise<void> {
     const usage = await this.getUsageById(id)
 
     if (usage.finalUsage !== null) {

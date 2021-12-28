@@ -3,7 +3,7 @@ import { Logger, ValidationPipe } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger'
 
-async function bootstrap () {
+async function bootstrap() {
   const logger = new Logger()
   const app = await NestFactory.create(AppModule);
   app.useGlobalPipes(new ValidationPipe())

@@ -7,30 +7,30 @@ import { ApiTags } from '@nestjs/swagger';
 @ApiTags('Usage')
 @Controller('usage')
 export class UsageController {
-  constructor (private readonly usageService: UsageService) { }
+  constructor(private readonly usageService: UsageService) { }
 
   @Post()
-  create (@Body() createUsageDto: CreateUsageDto) {
+  create(@Body() createUsageDto: CreateUsageDto) {
     return this.usageService.create(createUsageDto);
   }
 
   @Get()
-  findAll () {
+  findAll() {
     return this.usageService.getUsage();
   }
 
   @Get(':id')
-  findOne (@Param('id') id: string) {
+  findOne(@Param('id') id: string) {
     return this.usageService.getUsageById(id);
   }
 
   @Patch(':id')
-  update (@Param('id') id: string, @Body() updateUsageDto: UpdateUsageDto) {
+  update(@Param('id') id: string, @Body() updateUsageDto: UpdateUsageDto) {
     return this.usageService.update(id, updateUsageDto);
   }
 
   @Delete(':id')
-  remove (@Param('id') id: string) {
+  remove(@Param('id') id: string) {
     return this.usageService.delete(id);
   }
 }
