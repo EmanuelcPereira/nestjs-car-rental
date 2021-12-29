@@ -1,22 +1,13 @@
 import { CarsService } from '@/modules/cars/services/cars.service';
 import { CarsRepository } from '@/modules/cars/repositories/cars.repository';
+import { Car } from '@/modules/cars/Entities/car.entity';
 import { Test } from '@nestjs/testing';
 import faker from 'faker';
-import { Car } from '../../../../src/modules/cars/Entities/car.entity';
 
-let carsService: CarsService
-let carsRepository
+let carsService: CarsService;
+let carsRepository: CarsRepository;
 
 let id = faker.datatype.uuid()
-
-const mockCarsRepository = () => ({
-  getCars: jest.fn(),
-  getCarById: jest.fn(),
-  createCar: jest.fn(),
-  updateCar: jest.fn(),
-  inactivateCar: jest.fn(),
-  reactivateCar: jest.fn()
-})
 
 const allCars: Car[] = [
   new Car({
