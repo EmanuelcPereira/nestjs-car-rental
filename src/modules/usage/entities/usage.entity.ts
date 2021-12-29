@@ -29,4 +29,15 @@ export class Usage {
   @ManyToOne(() => Car)
   @JoinColumn({ name: 'carId' })
   car: Car
+
+  constructor(usage?: Partial<Usage>) {
+    this.id = usage?.id
+    this.initialUsage = usage?.initialUsage
+    this.finalUsage = usage?.finalUsage
+    this.motivation = usage?.motivation
+    this.driverId = usage?.driverId
+    this.driver = usage?.driver
+    this.carId = usage?.carId
+    this.car = usage?.car
+  }
 }
