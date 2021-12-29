@@ -16,4 +16,12 @@ export class Car {
 
   @Column()
   isDeleted: boolean
+
+  constructor(car?: Partial<Car>) {
+    this.id = car?.id
+    this.brand = car?.brand
+    this.color = car?.color
+    this.licensePlate = car?.licensePlate
+    this.isDeleted = car?.isDeleted
+  }
 }

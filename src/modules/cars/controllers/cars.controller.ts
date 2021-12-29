@@ -15,7 +15,7 @@ export class CarsController {
   @Post()
   @ApiOperation({ summary: 'create car' })
   @ApiResponse({ status: 201, description: 'Car created' })
-  create (@Body() createCarDto: CreateCarDto): Promise<Car> {
+  create (@Body() createCarDto: CreateCarDto) {
     this.logger.verbose(`Registering a new car using ${createCarDto}`)
     return this.carsService.create(createCarDto)
   }
@@ -23,7 +23,7 @@ export class CarsController {
   @Get()
   @ApiOperation({ summary: 'List all registered cars' })
   @ApiResponse({ status: 500, description: 'Failed to get cars using filters' })
-  getCars (@Query() filterDto?: GetCarsFilterDto): Promise<Car[]> {
+  getCars (@Query() filterDto?: GetCarsFilterDto) {
     this.logger.verbose(`Applied filters ${JSON.stringify(filterDto)}`)
     return this.carsService.getCars(filterDto)
   }
@@ -32,7 +32,7 @@ export class CarsController {
   @ApiOperation({ summary: 'List a car trough it\'s Id' })
   @ApiResponse({ status: 200, description: 'Found the car', type: Car })
   @ApiResponse({ status: 404, description: 'Car not found' })
-  getCarById (@Param('id') id: string): Promise<Car> {
+  getCarById (@Param('id') id: string) {
     this.logger.verbose(`Pass id = ${id}`)
     return this.carsService.getCarById(id)
   }
@@ -42,7 +42,7 @@ export class CarsController {
   @ApiResponse({ status: 200, description: 'Car deleted' })
   @ApiResponse({ status: 400, description: 'Car already deleted' })
   @ApiResponse({ status: 404, description: 'Car not found' })
-  delete (@Param('id') id: string): Promise<void> {
+  delete (@Param('id') id: string)  {
     this.logger.verbose(`Pass id = ${id}`)
     return this.carsService.inactivate(id)
   }
@@ -64,7 +64,7 @@ export class CarsController {
   update (
     @Param('id') id: string,
     @Body() updateCarInfo: UpdateCarInfosDto
-  ): Promise<Car> {
+  ) {
     this.logger.verbose(`Pass id = ${id} and infos ${updateCarInfo}`)
     return this.carsService.update(id, updateCarInfo)
   }
