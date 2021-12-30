@@ -1,11 +1,11 @@
-import { CarsController } from '../../../../src/modules/cars/controllers/cars.controller';
-import { CarsService } from '../../../../src/modules/cars/services/cars.service';
-import { Test, TestingModule } from '@nestjs/testing';
-import faker from 'faker';
-import { CreateCarDto } from '../../../../src/modules/cars/dtos/create.car.dto';
-import { Car } from '../../../../src/modules/cars/Entities/car.entity';
+import { CarsController } from '@/modules/cars/controllers/cars.controller';
+import { CarsService } from '@/modules/cars/services/cars.service';
+import { CreateCarDto } from '@/modules/cars/dtos/create.car.dto';
+import { Car } from '@/modules/cars/Entities/car.entity';
 import { BadRequestException } from '@nestjs/common';
-import { UpdateCarInfosDto } from '../../../../src/modules/cars/dtos/update.car.info.dto';
+import { UpdateCarInfosDto } from '@/modules/cars/dtos/update.car.info.dto';
+import faker from 'faker';
+import { Test, TestingModule } from '@nestjs/testing';
 
 let id = faker.datatype.uuid()
 
@@ -106,7 +106,7 @@ describe('CarsController', () => {
       expect(carsService.getCarById).toHaveBeenCalledWith(id)
     })
 
-    it('ensure carsController get car By Id trhow', async () => {
+    it('ensure carsController get car By Id throw', async () => {
       jest.spyOn(carsService, 'getCarById').mockRejectedValueOnce(new BadRequestException())
 
       expect(carsController.getCarById(id)).rejects.toThrowError()
